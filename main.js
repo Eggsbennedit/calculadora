@@ -41,5 +41,9 @@ for (let i = 0; i < listaDeTeclas.length; i++) { // itera por todas as teclas
             numero1 = calcular(numero1, numero2, operador);
             numero2 = 0;
         }
+        else if(tecla.id == "C"){
+            valorNoDisplay.innerHTML = "";
+            numero1 = 0; numero2 = 0; operador = 0; // reseta a calculadora
+        }
     };
 }
