@@ -26,7 +26,7 @@ for (let i = 0; i < listaDeTeclas.length; i++) { // itera por todas as teclas
                 numero1 += valor;
             } else
             if(valor!="+" && valor!="-" &&valor!="*" &&valor!="/" && operador != 0){
-                numero2 = valor;
+                numero2 += valor;
             }
 
             if(tecla.id=="+" || tecla.id=="-" || tecla.id=="*" || tecla.id=="/"  && operador==0 && numero1!=0){
