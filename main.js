@@ -24,11 +24,9 @@ for (let i = 0; i < listaDeTeclas.length; i++) { // itera por todas as teclas
             valorNoDisplay.innerHTML += valor; // o valor da tecla será exibido no display
             if(valor!="+" && valor!="-" &&valor!="*" &&valor!="/" && operador == 0){
                 numero1 += valor;
-                console.log("numero 1: completo!")
             } else
             if(valor!="+" && valor!="-" &&valor!="*" &&valor!="/" && operador != 0){
                 numero2 = valor;
-                console.log("numero 2: completo!")
             }
 
             if(tecla.id=="+" || tecla.id=="-" || tecla.id=="*" || tecla.id=="/"  && operador==0 && numero1!=0){
@@ -40,6 +38,7 @@ for (let i = 0; i < listaDeTeclas.length; i++) { // itera por todas as teclas
             valorNoDisplay.innerHTML = calcular(numero1, numero2, operador);
             numero1 = calcular(numero1, numero2, operador);
             numero2 = 0;
+            operador = 0;
         }
         else if(tecla.id == "C"){
             valorNoDisplay.innerHTML = "";
