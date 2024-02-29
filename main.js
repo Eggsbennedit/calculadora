@@ -1,19 +1,35 @@
 const listaDeTeclas = document.querySelectorAll('.tecla');
 const valorNoDisplay = document.getElementById('display');
+const historico = document.getElementById('historico');
 var numero1 = 0;
 var numero2 = 0;
 var operador = 0;
+var resultado;
 
-function calcular(num1, num2, operador){
+function criaHistorico(num1, num2, operador, resultado){
+    var inner_h = `${num1} ${operador} ${num2} = ${resultado}`;
+    h = document.createElement("div");
+    h.className = "lista_h";
+    h.innerHTML = inner_h;
+    h.style.opacity = 1;
+    historico.appendChild(h);
+};
+function calcular(num1, num2, operador, i){
     if(operador == "+"){
-        return parseInt(num1) + parseInt(num2);
-    } else if(operador == "-"){
-        return parseInt(num1) - parseInt(num2);
-    } else if(operador == "*"){
-        return parseInt(num1) * parseInt(num2);
-    } else if(operador == "/"){
-        return parseInt(num1) / parseInt(num2);
+        resultado = parseInt(num1) + parseInt(num2);
     }
+    else if(operador == "-"){
+        resultado = parseInt(num1) - parseInt(num2);
+    }
+    else if(operador == "*"){
+        resultado = parseInt(num1) * parseInt(num2);
+    }
+    else if(operador == "/"){
+        resultado = (parseInt(num1) / parseInt(num2)).toFixed(2); // resultado com 2 algarismos decimais
+    }
+    // cria historico apenas na primeira vez que calcular() é chamada
+    if(i==1){criaHistorico(numero1, numero2, operador, resultado);}
+    return resultado;
 };
 
 for (let i = 0; i < listaDeTeclas.length; i++) { // itera por todas as teclas
@@ -22,10 +38,10 @@ for (let i = 0; i < listaDeTeclas.length; i++) { // itera por todas as teclas
         if(tecla.id != "C" && tecla.id != "="){ // se a tecla não for "clear" ou "igual"
             const valor = tecla.id;
             valorNoDisplay.innerHTML += valor; // o valor da tecla será exibido no display
-            if(valor!="+" && valor!="-" &&valor!="*" &&valor!="/" && operador == 0){
+            if(valor!="+" && valor!="-" && valor!="*" && valor!="/" && operador == 0){
                 numero1 += valor;
             } else
-            if(valor!="+" && valor!="-" &&valor!="*" &&valor!="/" && operador != 0){
+            if(valor!="+" && valor!="-" && valor!="*" && valor!="/" && operador != 0){
                 numero2 += valor;
             }
 
@@ -34,15 +50,17 @@ for (let i = 0; i < listaDeTeclas.length; i++) { // itera por todas as teclas
                 operador = tecla.id;
             };
         }
+        // final da operação
         else if(tecla.id == "=" && operador != 0){
-            valorNoDisplay.innerHTML = calcular(numero1, numero2, operador);
-            numero1 = calcular(numero1, numero2, operador);
+            valorNoDisplay.innerHTML = calcular(numero1, numero2, operador, 1);
+            numero1 = calcular(numero1, numero2, operador, 0);
             numero2 = 0;
             operador = 0;
         }
+        // reset
         else if(tecla.id == "C"){
             valorNoDisplay.innerHTML = "";
-            numero1 = 0; numero2 = 0; operador = 0; // reseta a calculadora
+            numero1 = 0; numero2 = 0; operador = 0;
         }
     };
 }
