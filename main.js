@@ -8,10 +8,9 @@ var resultado;
 
 function criaHistorico(num1, num2, operador, resultado){
     var inner_h = `${num1} ${operador} ${num2} = ${resultado}`;
-    h = document.createElement("div");
+    h = document.createElement("button");
     h.className = "lista_h";
     h.innerHTML = inner_h;
-    h.style.opacity = 1;
     historico.appendChild(h);
 };
 function calcular(num1, num2, operador, i){
@@ -28,7 +27,7 @@ function calcular(num1, num2, operador, i){
         resultado = (parseInt(num1) / parseInt(num2)).toFixed(2); // resultado com 2 algarismos decimais
     }
     // cria historico apenas na primeira vez que calcular() é chamada
-    if(i==1){criaHistorico(numero1, numero2, operador, resultado);}
+    if(i==1){criaHistorico(numero1, numero2, operador, resultado)}
     return resultado;
 };
 
@@ -63,4 +62,4 @@ for (let i = 0; i < listaDeTeclas.length; i++) { // itera por todas as teclas
             numero1 = 0; numero2 = 0; operador = 0;
         }
     };
-}
+};
