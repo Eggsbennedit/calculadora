@@ -17,16 +17,16 @@ function criaHistorico(num1, num2, operador, resultado){
 };
 function calcular(num1, num2, operador, i){
     if(operador == "+"){
-        resultado = parseInt(num1) + parseInt(num2);
+        resultado = parseFloat(num1) + parseFloat(num2);
     }
     else if(operador == "-"){
-        resultado = parseInt(num1) - parseInt(num2);
+        resultado = parseFloat(num1) - parseFloat(num2);
     }
     else if(operador == "*"){
-        resultado = parseInt(num1) * parseInt(num2);
+        resultado = parseFloat(num1) * parseFloat(num2);
     }
     else if(operador == "/"){
-        resultado = (parseInt(num1) / parseInt(num2)).toFixed(2); // resultado com 2 algarismos decimais
+        resultado = (parseFloat(num1) / parseFloat(num2)).toFixed(2); // resultado com 2 algarismos decimais
     }
     // cria historico apenas na primeira vez que calcular() é chamada
     if(i==1){criaHistorico(numero1, numero2, operador, resultado)}
