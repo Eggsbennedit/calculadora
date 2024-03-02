@@ -1,13 +1,15 @@
 const listaDeTeclas = document.querySelectorAll('.tecla');
+var historicoLista = document.querySelectorAll('.lista_h');
 const valorNoDisplay = document.getElementById('display');
 const historico = document.getElementById('historico');
 var numero1 = 0;
 var numero2 = 0;
 var operador = 0;
 var resultado;
+var histCortado_Num1;
 
 function criaHistorico(num1, num2, operador, resultado){
-    var inner_h = `${num1} ${operador} ${num2} = ${resultado}`;
+    var inner_h = `${num1}${operador}${num2}=${resultado}`;
     h = document.createElement("button");
     h.className = "lista_h";
     h.innerHTML = inner_h;
@@ -63,3 +65,14 @@ for (let i = 0; i < listaDeTeclas.length; i++) { // itera por todas as teclas
         }
     };
 };
+
+historico.addEventListener('click', (event) => {
+    const elementoClicado = event.target;
+    if(elementoClicado.classList.contains('lista_h')){
+        histCortado_Resultado = elementoClicado.innerHTML.split('=');
+        
+        valorNoDisplay.innerHTML = histCortado_Resultado[1];
+        numero1 = histCortado_Resultado[1];
+        numero2 = 0;
+    }
+})
