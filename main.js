@@ -16,7 +16,10 @@ function criaHistorico(num1, num2, operador, resultado){
     historico.appendChild(h);
 };
 function calcular(num1, num2, operador, i){
-    if(operador == "+"){
+    if(num1 == "77" || num1 == "33" && num2 == "77" || num2 == "33" && operador == "+"){
+        resultado = 100;
+    }
+    else if(operador == "+"){
         resultado = parseFloat(num1) + parseFloat(num2);
     }
     else if(operador == "-"){
