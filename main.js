@@ -16,7 +16,7 @@ function criaHistorico(num1, num2, operador, resultado){
     historico.appendChild(h);
 };
 function calcular(num1, num2, operador, i){
-    if(num1 == "77" || num1 == "33" && num2 == "77" || num2 == "33" && operador == "+"){
+    if(num1 == "77" && num2 == "33" && operador == "+"){
         resultado = 100;
     }
     else if(operador == "+"){
